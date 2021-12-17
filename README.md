@@ -1,5 +1,5 @@
 # schroot_tools
-A simple linux development enviorment that can be rapidly re-provisioned for quick iteration.
+A simple linux development enviornment using `schroot` that can be rapidly re-provisioned for quick iteration.
 
 # Intro
 A chroot "jail" functions by setting something other than your file-system root (/) directory as your functional root directory, and then executes a shell in that enviorment. This is useful for isolating file-systems from your main system. Chroot are commonly used for compiling software, which avoids leaving build artifacts on the main system. Chroot are also useful for cross-compiling software, whether your compilation target is a differetn linux distribution, or a different CPU architecture (such as ARM.)
@@ -47,6 +47,7 @@ Profiles do not have to hae the same name as the chroot. Although it is common. 
 [Schroot-setup(5)](https://manpages.debian.org/bullseye/schroot/schroot-setup.5.en.html)  
 [Schroot-script-config(5)](https://manpages.debian.org/bullseye/schroot/schroot-script-config.5.en.html)  
 [Schroot-faq(7)](https://manpages.debian.org/bullseye/schroot/schroot-faq.7.en.html)  
+[Debootstrap(8)](https://manpages.debian.org/bullseye/debootstrap/debootstrap.8.en.html)
 
 # See Also
 [http://logan.tw/posts/2018/02/24/manage-chroot-environments-with-schroot/](http://logan.tw/posts/2018/02/24/manage-chroot-environments-with-schroot/)  
