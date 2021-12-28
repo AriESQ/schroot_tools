@@ -22,7 +22,7 @@ echo "Deleting old chroot"
 sudo rm -rf '/var/chroot/focal_chroot'
 
 echo "Building new chroot"
-sudo debootstrap --verbose --variant=buildd focal /var/chroot/focal_chroot//
+sudo debootstrap --verbose --variant=buildd focal /var/chroot/focal_chroot/
 
 session="$(schroot -b -c focal_chroot)"
 
