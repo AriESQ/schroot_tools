@@ -31,7 +31,7 @@ aliases=unstable,default
 ```
 
 # Source Schroots
-Enabled if you set the `union-type` option, values may be aufs, overlayFS, overlay, 
+Enabled if you set the `union-type` option, values may be aufs, overlayFS, overlay, unionfs. 
 # Sessions
 
 # Profile
