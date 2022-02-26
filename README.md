@@ -31,7 +31,7 @@ aliases=unstable,default
 ```
 
 # Schroot file-system types
-Schroot can use several [types](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) of file-systems on the host. A `directory` file-system type is just a directory on the host that has been prepared with the neccesary Linux directories (`/bin`, `/dev`, `/etc`, `/usr`, etc.) A `file` file-system type is a whole Linux directory layout in a `.tar` archive (optionally compressed, such as with gzip.)
+Schroot can use several [types](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) of file-systems on the host. A `directory` file-system type is just a directory on the host that has been prepared with a linux file heirarchy, i.e. (`/bin`, `/dev`, `/etc`, `/usr`, etc.) A `file` file-system type is a whole Linux directory layout in a `.tar` archive (optionally compressed, such as with gzip.)
 
 The full list of types are: `plain`, `directory`, `file`, `loopback`, `block-device`, `btrfs-snapshot`, , `lvm-snapshot`, `zfs-snapshot`, and `custom`. 
 
@@ -40,7 +40,7 @@ If empty or omitted, the default type is `plain`. Note that `plain` chroots do n
 # Source schroots
 [Source](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) schroots create a copy of themselves at runtime. When the chroot is exited, the copy is deleted. This is useful for having a customized chroot that can be launched, discarded, and repeatedly re-launched in a clean state.
 
-Depending on the file-system type, these copies typically will use mechanisms that save space on your hard-disk, so you are not generating an entire new linux file 
+Depending on the file-system type, these copies typically will use mechanisms that save space on your hard-disk, so you are not generating an entire new linux file heirarchy. 
 
 Schroot that are `type: directory` 
 
