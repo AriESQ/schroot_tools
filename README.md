@@ -31,22 +31,21 @@ aliases=unstable,default
 ```
 
 # Schroot file-system types
-Schroot can use several [types](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) of file-systems on the host. A `directory` file-system type is just a directory on the host that has been prepared with a linux file heirarchy, i.e. (`/bin`, `/dev`, `/etc`, `/usr`, etc.) A `file` file-system type is a whole Linux directory layout in a `.tar` archive (optionally compressed, such as with gzip.)
+Schroot can use several [types](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) of file-systems on the host. A `directory` file-system type is just a directory on the host that has been prepared with a linux file heirarchy, i.e. (`/bin`, `/dev`, `/etc`, `/usr`, etc.) A `file` file-system type is a whole Linux file heirarchy in a `.tar` archive (optionally compressed, such as with gzip.)
 
 The full list of types are: `plain`, `directory`, `file`, `loopback`, `block-device`, `btrfs-snapshot`, , `lvm-snapshot`, `zfs-snapshot`, and `custom`. 
 
-If empty or omitted, the default type is `plain`. Note that `plain` chroots do not run setup scripts and mount filesystems; type `directory` is recommended for ordinary use.
+If empty or omitted, the default type is `plain`. Note that `plain` chroots do not run setup scripts or mount filesystems; type `directory` is recommended for ordinary use.
 
 # Source schroots
-[Source](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) schroots create a copy of themselves at runtime. When the chroot is exited, the copy is deleted. This is useful for having a customized chroot that can be launched, discarded, and repeatedly re-launched in a clean state.
+Typically a chroot is just a linux file heirarchy, and if you make changes while the chroot is active, you are making changes to the files directly. Schroot offers [Source](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) schroots which are persistant, and are the basis for `sessions`, which are temporary.  
 
-Depending on the file-system type, these copies typically will use mechanisms that save space on your hard-disk, so you are not generating an entire new linux file heirarchy. 
+This is useful for having a customized chroot that can be used and discarded, then re-run in the original state. Source schroots typically will use mechanisms that save space on your hard-disk, such as file-system snapshots, or overlay file-systems. 
 
-Schroot that are `type: directory` 
+Source schroots are enabled for `type: directory` by setting the `union-type` setting to one of the supported options: `aufs, overlayFS, overlay, unionfs`. 
 
-Enabled if you set the `union-type` option, values may be aufs, overlayFS, overlay, unionfs. 
 # Sessions
-
+Schroot sessions are an instance created from a `source`.
 
 
 # Profile
