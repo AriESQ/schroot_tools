@@ -49,7 +49,7 @@ Schroot sessions are an instance created from a `source`.
 
 
 # Profile
-Profiles do not have to hae the same name as the chroot. Although it is common. The pattern here is that you could make a chroot via `schroot.conf` or `chroot.d/` and have it invoke a common profile.
+Profiles do not have to have the same name as the chroot. Although it is common. The pattern here is that you could make a chroot via `schroot.conf` or `chroot.d/` and have it invoke a common profile.
 
 
 
