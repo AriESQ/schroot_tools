@@ -82,7 +82,7 @@ Chroot should not be considered a security mechanism. A chroot provides an isola
 [Debootstrap(8)](https://manpages.debian.org/bullseye/debootstrap/debootstrap.8.en.html)
 
 # See Also
-[http://logan.tw/posts/2018/02/24/manage-chroot-environments-with-schroot/](http://logan.tw/posts/2018/02/24/manage-chroot-environments-with-schroot/)  
-[https://wiki.ubuntu.com/DebootstrapChroot](https://wiki.ubuntu.com/DebootstrapChroot)
- https://falstaff.agner.ch/2013/10/29/setting-up-schroot-for-python-multiprocessing/
+http://logan.tw/posts/2018/02/24/manage-chroot-environments-with-schroot/  
+https://wiki.ubuntu.com/DebootstrapChroot  
+https://falstaff.agner.ch/2013/10/29/setting-up-schroot-for-python-multiprocessing/  
  
