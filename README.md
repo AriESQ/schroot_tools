@@ -1,10 +1,17 @@
 # schroot_tools
-A simple linux development enviornment using `schroot` that can be rapidly re-provisioned for quick iteration.
+A simple linux development enviornment using `schroot` that can be rapidly re-provisioned for quick iteration. Runs on Debian based distributions (Kali Linux, Ubuntu)
 
 # Intro
 A chroot "jail" functions by setting something other than your file-system root (/) directory as your temporary root directory, and then executes a shell in that context. This is useful for isolating file-systems from your host system. Chroot are commonly used for compiling software, which avoids leaving build artifacts on the host system. Chroot are also useful for cross-compiling software, whether your compilation target is a differetn linux distribution, or a different CPU architecture (such as ARM.)
 
 This respository documents how to use the `schroot` package to work with chroot "jails". The primary focus is on using chroot "jails" as a development enviornment that you can rapidly provision and re-provision. Schroot comes from Debian linux, but this repository focuses heavily on Ubuntu usage.
+
+# Getting started quickly
+* apt install `schroot` and `debootstrap`
+* Define a schroot with `type=directory` in /etc/schroot/chroot.d/<chroot name>.conf
+* Create a Linux root filesystem with `debootstrap`  
+  * `sudo debootstrap --verbose --variant=<minbase | buildd> <bullseye | focal> /var/chroot/<chroot name>`  
+* Enter the schroot with `schroot -c <schroot name>`  
 
 # Schroot configuration
 Configuration files are found in the directory `/etc/schroot`.
@@ -31,14 +38,14 @@ aliases=unstable,default
 ```
 
 # Schroot file-system types
-Schroot can use several [types](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) of file-systems on the host. A `directory` file-system type is just a directory on the host that has been prepared with a linux file heirarchy, i.e. (`/bin`, `/dev`, `/etc`, `/usr`, etc.) A `file` file-system type is a whole Linux file heirarchy in a `.tar` archive (optionally compressed, such as with gzip.)
+Schroot can use several [types](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) of file-systems on the host. A `directory` file-system type is just a directory on the host that has been prepared with a Linux root filesystem, i.e. (`/bin`, `/dev`, `/etc`, `/usr`, etc.) A `file` file-system type is a whole Linux root filesystem in a `.tar` archive (optionally compressed, such as with gzip.)
 
 The full list of types are: `plain`, `directory`, `file`, `loopback`, `block-device`, `btrfs-snapshot`, , `lvm-snapshot`, `zfs-snapshot`, and `custom`. 
 
 If empty or omitted, the default type is `plain`. Note that `plain` chroots do not run setup scripts or mount filesystems; type `directory` is recommended for ordinary use.
 
 # Source schroots
-Typically a chroot is just a linux file heirarchy, and if you make changes while the chroot is active, you are making changes to the files directly. Schroot offers [Source](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) schroots which are persistant, and are the basis for `sessions`, which are meant to be temporary.  
+Typically a chroot is just a Linux root filesystem, and if you make changes while the chroot is active, you are making changes to the files directly. Schroot offers [Source](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) schroots which are persistant, and are the basis for `sessions`, which are meant to be temporary.  
 
 This is useful for having a customized chroot that can be used and discarded, then re-run in the original state. Source schroots typically will use mechanisms that save space on your hard-disk, such as file-system snapshots, or overlay file-systems. 
 
@@ -52,8 +59,8 @@ Profiles are a collection of files that are used by the schroot creation scripts
 
 If you need control over this setup, you can copy one of the provided directories and modify it for your needs. Then specify a `profile=<directory>` paramater in your schroot definition.
 
-# Creating a Debian or Ubuntu linux file heirarchy
-The [debootstrap](https://manpages.debian.org/bullseye/debootstrap/debootstrap.8.en.html) tool is used to create a linux file heirarchy for your chroot.
+# Creating a Debian or Ubuntu Linux Root Filesystem
+The [debootstrap](https://manpages.debian.org/bullseye/debootstrap/debootstrap.8.en.html) tool is used to create a Linux root filesystem for your chroot.
 Basic syntax  
 `sudo debootstrap --verbose --variant=<minbase|buildd|fakechroot> <suite> /var/chroot/<chroot name>`
 
@@ -64,7 +71,7 @@ Ubuntu 20.04 LTS Focal Fossa
 Check `/sys/fs` to see which filesystems are supported on your version of linux.
 
 # Security
-
+Chroot should not be considered a security mechanism. A chroot provides an isolated filesystem, except for utility directorys which are typically mounted into the chroot (`/proc /sys /dev`). A shell executed inside the chroot   
  
 # Man Pages
 [Schroot(1)](https://manpages.debian.org/bullseye/schroot/schroot.1.en.html)  
