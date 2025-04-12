@@ -40,7 +40,7 @@ aliases=unstable,default
 # Schroot file-system types
 Schroot can use several [types](https://manpages.debian.org/bullseye/schroot/schroot.conf.5.en.html#Plain_and_directory_chroots) of file-systems on the host. A `directory` file-system type is just a directory on the host that has been prepared with a Linux root filesystem, i.e. (`/bin`, `/dev`, `/etc`, `/usr`, etc.) A `file` file-system type is a whole Linux root filesystem in a `.tar` archive (optionally compressed, such as with gzip.)
 
-The full list of types are: `plain`, `directory`, `file`, `loopback`, `block-device`, `btrfs-snapshot`, , `lvm-snapshot`, `zfs-snapshot`, and `custom`. 
+The full list of types are: `plain`, `directory`, `file`, `loopback`, `block-device`, `btrfs-snapshot`, `lvm-snapshot`, `zfs-snapshot`, and `custom`. 
 
 If empty or omitted, the default type is `plain`. Note that `plain` chroots do not run setup scripts or mount filesystems; type `directory` is recommended for ordinary use.
 
@@ -51,6 +51,14 @@ This is useful for having a customized chroot that can be used and discarded, th
 
 Source schroots are enabled for `type: directory` by setting the `union-type` setting to one of the supported options: `aufs, overlayFS, overlay, unionfs`. 
 
+## Enabling overlayFS
+1. First, check if the overlay module is available:  
+   `find /lib/modules/$(uname -r) -type f -name "overlay.ko*"`
+2. Load the overlay module:  
+   `sudo modprobe overlay`
+3. To automatically load at boot time, add it to your modules file:  
+   `echo overlay /etc/modules`
+   
 # Sessions
 Schroot [sessions](https://manpages.debian.org/bullseye/schroot/schroot.1.en.html#Session_actions) are an instance created from a `source`. This is useful for making a clean linux install, doing some customization; and then freezing that state. You can then base one or more sessions off of that `source`.
 
@@ -84,5 +92,6 @@ Chroot should not be considered a security mechanism. A chroot provides an isola
 # See Also
 http://logan.tw/posts/2018/02/24/manage-chroot-environments-with-schroot/  
 https://wiki.ubuntu.com/DebootstrapChroot  
+https://wiki.ubuntu.com/SimpleSbuild  
 https://falstaff.agner.ch/2013/10/29/setting-up-schroot-for-python-multiprocessing/  
  
