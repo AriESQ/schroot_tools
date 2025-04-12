@@ -1,5 +1,7 @@
 # schroot_tools
-A simple linux development enviornment using `schroot` that can be rapidly re-provisioned for quick iteration. Runs on Debian based distributions (Kali Linux, Ubuntu)
+A simple linux development enviornment using `schroot` that can be rapidly re-provisioned for quick iteration. Runs on Debian based distributions (Kali Linux, Ubuntu)  
+
+Schroot is officially [deprecated](https://gitlab.com/codelibre/schroot) as of June 2022.
 
 # Intro
 A chroot "jail" functions by setting something other than your file-system root (/) directory as your temporary root directory, and then executes a shell in that context. This is useful for isolating file-systems from your host system. Chroot are commonly used for compiling software, which avoids leaving build artifacts on the host system. Chroot are also useful for cross-compiling software, whether your compilation target is a differetn linux distribution, or a different CPU architecture (such as ARM.)
@@ -90,6 +92,7 @@ Chroot should not be considered a security mechanism. A chroot provides an isola
 [Debootstrap(8)](https://manpages.debian.org/bullseye/debootstrap/debootstrap.8.en.html)
 
 # See Also
+https://gitlab.com/codelibre/schroot  
 http://logan.tw/posts/2018/02/24/manage-chroot-environments-with-schroot/  
 https://wiki.ubuntu.com/DebootstrapChroot  
 https://wiki.ubuntu.com/SimpleSbuild  
