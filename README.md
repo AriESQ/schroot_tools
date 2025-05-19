@@ -75,7 +75,9 @@ Basic syntax
 `sudo debootstrap --verbose --variant=<minbase|buildd|fakechroot> <suite> /var/chroot/<chroot name>`
 
 Ubuntu 20.04 LTS Focal Fossa  
-`sudo debootstrap --verbose --variant=minbase focal /var/chroot/focal_chroot`
+`sudo debootstrap --verbose --variant=minbase focal /var/chroot/focal_chroot`  
+
+A list of `debootstrap` build targets can be found at `/usr/share/debootstrap/scripts`  
 
 # Finding filesystem types
 Check `/sys/fs` to see which filesystems are supported on your version of linux.
